@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0e330870-9d55-4ac4-b6da-d0ea268d4163" name="Default Changelist" comment="" />
+    <list default="true" id="c4a3720d-cc46-4ff2-90ff-a29ab3cd4cad" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -11,7 +11,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectId" id="1SNpeSGO52jWODVC9EjXQmOiIK3" />
+  <component name="ProjectId" id="1SbGU66ACUCRlk5TSbg3oCDIoDv" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -23,7 +23,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
   </component>
-  <component name="ReplState" timestamp="1571430875744">{:repl-history {:ide [], :local [], :remote []}}</component>
+  <component name="ReplState" timestamp="1572105220017">{:repl-history {:ide [], :local [], :remote []}}</component>
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -37,8 +37,8 @@
     </option>
   </component>
   <component name="RunManager">
-    <configuration name="REPL for dollar_change" type="ClojureREPL" factoryName="Local" activateToolWindowBeforeRun="false" temporary="true">
-      <module name="dollar_change" />
+    <configuration name="REPL for core" type="ClojureREPL" factoryName="Local" activateToolWindowBeforeRun="false" temporary="true">
+      <module name="core" />
       <setting name="replType" value="NREPL" />
       <setting name="execution" value="LEININGEN" />
       <setting name="jvmArgs" value="" />
@@ -68,7 +68,7 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Clojure REPL.REPL for dollar_change" />
+        <item itemvalue="Clojure REPL.REPL for core" />
       </list>
     </recent_temporary>
   </component>
@@ -77,12 +77,14 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="0e330870-9d55-4ac4-b6da-d0ea268d4163" name="Default Changelist" comment="" />
-      <created>1571414002490</created>
+      <changelist id="c4a3720d-cc46-4ff2-90ff-a29ab3cd4cad" name="Default Changelist" comment="" />
+      <created>1571824894533</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1571414002490</updated>
-      <workItem from="1571414003945" duration="4109000" />
+      <updated>1571824894533</updated>
+      <workItem from="1571824897604" duration="1084000" />
+      <workItem from="1572013307981" duration="621000" />
+      <workItem from="1572086152273" duration="5026000" />
     </task>
     <servers />
   </component>
@@ -94,7 +96,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>

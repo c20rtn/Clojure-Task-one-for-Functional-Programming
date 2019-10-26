@@ -1,6 +1,6 @@
-(ns dollar-change.core-test
+(ns core.core-test
   (:require [clojure.test :refer :all]
-            [dollar-change.core :refer :all]))
+            [core.core :refer :all]))
 
 (deftest a-test
   (testing "FIXME, I fail."
