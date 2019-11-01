@@ -1,7 +1,9 @@
+(ns core.core)
 ;Functional Programming Task one
 
 ;Squaring Lists Sub-task 1
 (defn square_list [i limit]
+  
   (lazy-seq
     (when (< i limit)
       (cons (* i i) (square_list (inc i) limit)))))

@@ -22,8 +22,9 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
-  <component name="ReplState" timestamp="1572105220017">{:repl-history {:ide [], :local [], :remote []}}</component>
+  <component name="ReplState" timestamp="1572190757650">{:repl-history {:ide [], :local [], :remote []}}</component>
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -84,7 +85,10 @@
       <updated>1571824894533</updated>
       <workItem from="1571824897604" duration="1084000" />
       <workItem from="1572013307981" duration="621000" />
-      <workItem from="1572086152273" duration="5026000" />
+      <workItem from="1572086152273" duration="7715000" />
+      <workItem from="1572168408227" duration="2156000" />
+      <workItem from="1572281364766" duration="1208000" />
+      <workItem from="1572514454873" duration="2132000" />
     </task>
     <servers />
   </component>
