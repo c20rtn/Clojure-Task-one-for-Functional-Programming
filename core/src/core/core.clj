@@ -11,19 +11,15 @@
 ;             ● Naming of functions and vars
 
 ;Squaring Lists Sub-task 1
-(defn square_list [i limit]
+(defn square_list [n]
   (lazy-seq
-    (when (< i limit)
-      (cons (* i i) (square_list (inc i) limit)))))
+    (if (not (empty? n))
+      (if (number? (first n))
+        (cons (* (first n)(first n)) (square_list (rest n)))
+        (square_list (rest n))
+))))
 
-(square_list 0 50)
-
-(defn square_list_recur [n]
-  (lazy-seq
-    (if (empty? n)
-      (cons (* (first n)(first n)) (square_list_recur (rest n))))))
-
-(square_list_recur [1 2 3 4 5 6 7 8 9])
+(println (square_list [1 2 3 4 5 6 7 8 9]))
 
 ;Counting coins Sub-task 2
 
