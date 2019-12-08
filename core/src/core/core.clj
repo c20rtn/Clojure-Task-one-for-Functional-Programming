@@ -35,38 +35,68 @@
 )
 (println (dollar_count 100 [1 5 10 25]))
 
+(defn dollar_change_reduce [amount, dens]
 
-;(defn dollar_change [amount, denominations]
-;  (if (and(<= 0 amount) (< 0 (count denominations)))        ;
-;    (loop [working_amount amount
-;           working_denominations (sort < denominations)     ;can use any order and it will sort
-;           total_denominations 0
-;           denomination_index (- (count denominations) 1)
-;           ]
-;      (println total_denominations)
-;
-;      (cond
-;        (== 0 working_amount) (recur
-;                                amount
-;                                working_denominations
-;                                (inc total_denominations)
-;                                (- (count denominations) 1)) ;if the working amount is 0 then reset and inc the total
-;        (< 0 (quot working_amount (get working_denominations denomination_index)))(recur
-;                                                                                     (- working_amount (*(quot amount (get working_denominations denomination_index))(get working_denominations denomination_index)))
-;                                                                                     working_denominations
-;                                                                                     total_denominations
-;                                                                                     (dec denomination_index))
-;        :else (recur
-;                working_amount
-;                working_denominations
-;                total_denominations
-;                (dec denomination_index))
-;))))
-;
-;(dollar_change 100 [25, 10, 5, 1])
+
+  )
+(dollar_change_reduce 100 [25, 10, 5, 1])
+
+
+
+(defn dollar_change [amount, dens]
+  (if (and(<= 0 amount) (< 0 (count dens)))        ;
+    (loop [_amount amount
+           _dens (sort < dens)     ;can use any order and it will sort
+           total 0
+           den_index (- (count dens) 1)
+           ]
+      (println total)
+
+      (cond
+        (== 0 _amount) (recur
+               amount
+               _dens
+               (inc total)
+               (- (count dens) 1)) ;if the working amount is 0 then reset and inc the total
+        (< 0 (quot _amount (get _dens den_index)))(recur
+               (- _amount (*(quot amount (get _dens den_index))(get _dens den_index)))
+               _dens
+               total
+               (dec den_index))
+        :else (recur
+                _amount
+                _dens
+                total
+                (dec den_index))
+))))
+(dollar_change 100 [25, 10, 5, 1])
 
 ;Kindergardeners Sub-task 3
 
+(def children ["Alice" "Bob" "Charlie" "David" "Eve" "Fred" "Ginny"
+               "Harriet" "Ileana" "Joseph" "Kincaid" "Larry"])
+(def plants ["Violets" "Grass" "Clover" "Radishes"])
+
+(def shelfs "VRCGVVRVCGGCCGVRGCVCGCGVVRCCCGCRRGVCGCRVVCVGCGCV")
+
+(defn kindergardeners [children plants shelfs]
+  (if (= (/ (count shelfs) (count children)) 4)
+    (loop [_shelfs shelfs _children children]
+      (print (first _children))
+      (if (not-empty _children)
+        (recur (shelfs) (rest _children))))
+    "Not correct amount of plants per child"))
+
+(kindergardeners children plants shelfs)
+
+(defn transform
+  [coll]
+  (reduce (fn [ncoll [k v]]
+            (assoc ncoll (keyword (str (first v))) v))
+          {}
+          coll))
+
+(transform {:a "abc" :b "def" :c "ghi"})
 
 
 
