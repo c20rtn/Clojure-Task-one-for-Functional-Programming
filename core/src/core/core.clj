@@ -19,7 +19,10 @@
         (square_list (rest n))
 ))))
 
-(println (square_list [1 2 3 4 5 6 7 8 9]))
+(defn map_square [n]
+  (map #(* % %) (filter number? n))
+)
+(print (map_square [1 2 3 4 5 6 7 8 9]))
 
 ;Counting coins Sub-task 2
 
