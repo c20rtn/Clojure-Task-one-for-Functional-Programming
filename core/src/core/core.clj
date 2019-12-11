@@ -79,28 +79,32 @@
 (def children ["Alice" "Bob" "Charlie" "David" "Eve" "Fred" "Ginny"
                "Harriet" "Ileana" "Joseph" "Kincaid" "Larry"])
 (def plants ["Violets" "Grass" "Clover" "Radishes"])
-
 (def shelfs "VRCGVVRVCGGCCGVRGCVCGCGVVRCCCGCRRGVCGCRVVCVGCGCV")
 
 (defn kindergardeners [children plants shelfs]
-  (if (= (/ (count shelfs) (count children)) 4)
-    (loop [_shelfs shelfs _children children]
-      (print (first _children))
-      (if (not-empty _children)
-        (recur (shelfs) (rest _children))))
+  (if (= (mod (count shelfs) (count children)) 0)
+    (def split-shelfs )
     "Not correct amount of plants per child"))
+
+(defn match [n]
+
+  )
 
 (kindergardeners children plants shelfs)
 
-(defn transform
-  [coll]
-  (reduce (fn [ncoll [k v]]
-            (assoc ncoll (keyword (str (first v))) v))
+
+(nth(get (vec (split-at (/ (count shelfs) 2) (vec shelfs)))0)1)
+
+
+
+
+(defn transform [coll]
+  (reduce (fn [newcoll [v]] (assoc newcoll (keyword (str (first v))) v))
           {}
           coll))
-
 (transform {:a "abc" :b "def" :c "ghi"})
 
-
-
 ;Meteor falls Sub-task 4
+
+(def info (slurp "https://data.nasa.gov/resource/y77d-th95.json"))
+
