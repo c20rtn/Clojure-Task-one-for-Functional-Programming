@@ -1,4 +1,5 @@
-(ns core.core)
+(ns core.core
+  (:require [clojure.data.json :as json]))
 ;Functional Programming Task one
 ;             ● Does it produce a correct answer
 ;             ● Use of functions
@@ -26,52 +27,22 @@
 
 ;Counting coins Sub-task 2
 
-(defn denomination_count [amount, dens]
-  (cond
-    (or (empty? dens)(> 0 amount)) 0
-    (== amount 0) 1
-    :else (+ (denomination_count amount (rest dens))(denomination_count (- amount (first dens)) dens))
-    )
-  )
+(defn denomination_count
+  (memoize
+    (fn [amount, dens]
+      (cond
+        (or (empty? dens)(> 0 amount)) 0
+        (== amount 0) 1
+        :else (+ (denomination_count amount (rest dens))(denomination_count (- amount (first dens)) dens))
+        ))))
 (defn dollar_count [amount, dens]
-  (denomination_count amount, (sort < dens))
+  (time (denomination_count amount, (sort < dens)))
 )
 (println (dollar_count 100 [1 5 10 25]))
 
-(defn dollar_change_reduce [amount, dens]
-
+(defn dollar_change [amount, dens]
 
   )
-(dollar_change_reduce 100 [25, 10, 5, 1])
-
-
-
-(defn dollar_change [amount, dens]
-  (if (and(<= 0 amount) (< 0 (count dens)))        ;
-    (loop [_amount amount
-           _dens (sort < dens)     ;can use any order and it will sort
-           total 0
-           den_index (- (count dens) 1)
-           ]
-      (println total)
-
-      (cond
-        (== 0 _amount) (recur
-               amount
-               _dens
-               (inc total)
-               (- (count dens) 1)) ;if the working amount is 0 then reset and inc the total
-        (< 0 (quot _amount (get _dens den_index)))(recur
-               (- _amount (*(quot amount (get _dens den_index))(get _dens den_index)))
-               _dens
-               total
-               (dec den_index))
-        :else (recur
-                _amount
-                _dens
-                total
-                (dec den_index))
-))))
 (dollar_change 100 [25, 10, 5, 1])
 
 ;Kindergardeners Sub-task 3
@@ -84,37 +55,36 @@
 (defn transform ;gives a key of the starting letter to each item in the list, used to identify plants
   [coll]
   (reduce-kv (fn [m k v]
-             (if (empty? v)
-               m
-               (assoc m (keyword (str(first v))) v)))
+               (if (empty? v)
+                 m
+                 (assoc m (keyword (str(first v))) v)))
              {}
              coll))
-
+(defn match-plants [children plants shelfs]
+  (def key-plants (transform plants))
+  (def first-shelf(subs shelfs 0 (/(count shelfs)2)))
+  (def second-shelf(subs shelfs (/(count shelfs)2) (count shelfs)))
+  (map-indexed
+    (fn [i v] {(keyword v)
+               [(key-plants (keyword(str(nth first-shelf (* i 2)))))
+                (key-plants (keyword(str(nth first-shelf (+(* i 2)1)))))
+                (key-plants (keyword(str(nth second-shelf (* i 2)))))
+                (key-plants (keyword(str(nth second-shelf (+(* i 2)1)))))]})
+    children)
+  )
 (defn kindergardeners [children plants shelfs]
-  (if (/ (mod (count shelfs) (count children)) 4) ; Each child gets 4 cups, two on each row
-    (def key-plants (transform plants))
-    (def split-shelfs (split-at (/ (count shelfs) 2) (vec shelfs)))
-    "Not correct amount of plants per child"))
-
-
+  (if (= (/ (count shelfs) (count children)) 4) ; Each child gets 4 cups, two on each row
+    (match-plants children plants shelfs)
+    "Wrong number of children per plant"
+    ))
 (kindergardeners children plants shelfs)
-
-
-;(nth(get (vec (split-at (/ (count shelfs) 2) (vec shelfs)))0)1)
-
-
-(reduce-kv (fn [m k v]
-             (if (empty? v)
-               m
-               (fn [children idx itm]
-                 (assoc children (keyword v)
-                                 [(nth(get new-shelfs 0)0) (nth(get new-shelfs 0)0) (nth(get new-shelfs 0)1) (nth(get new-shelfs 0)1)]))))
-           {}
-           children)
-
-
 
 
 ;Meteor falls Sub-task 4
 
-(def info (slurp "https://data.nasa.gov/resource/y77d-th95.json"))
+(def info (json/read-str (slurp "https://data.nasa.gov/resource/y77d-th95.json") :key-fn keyword))
+
+;1. Which year saw the most individual meteor falls?
+()
+
+;2. Which year saw the heaviest collective meteor fall?
